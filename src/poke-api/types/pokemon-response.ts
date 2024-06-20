@@ -1,20 +1,20 @@
-export interface PokemonResponse {
+export class PokemonResponse {
   id: number;
   name: string;
   types: TypeSlot[];
   sprites: PokemonImages;
 }
 
-export interface TypeSlot {
+export class TypeSlot {
   slot: number;
   type: Type;
 }
 
-export interface Type {
+export class Type {
   name: string;
   url: string;
 }
 
-export interface PokemonImages {
+export class PokemonImages {
   front_default: string;
 }
