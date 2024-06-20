@@ -1,13 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, LoggerService } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { PokemonResponse } from './types/pokemon-response';
-import * as fs from 'fs';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 @Injectable()
 export class PokeApiService {
   private readonly pokemonEndpoint = 'pokemon';
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    private readonly logger: LoggerService,
+    private readonly httpService: HttpService,
+  ) {}
 
   async fetchPokemons(): Promise<PokemonResponse[]> {
     // return this.httpService.get(this.pokemonSpeciesEndpoint).toPromise();
@@ -43,11 +47,9 @@ export class PokeApiService {
         };
       }),
     );
-    console.log(pokemons.length);
-    console.log(`Time parallel: ${new Date().getTime() - startParallel}ms`);
-
-    const jsonToWrite = JSON.stringify(pokemons, null, 2);
-    fs.writeFileSync('pokemons.json', jsonToWrite);
+    this.logger.log(
+      `Time to fetch pokemons: ${new Date().getTime() - startParallel}ms`,
+    );
 
     return pokemons;
   }
