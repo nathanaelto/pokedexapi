@@ -10,8 +10,8 @@ import { PokeApiController } from './poke-api.controller';
       timeout: 5000,
     }),
   ],
+  controllers: [PokeApiController],
   providers: [PokeApiService],
   exports: [PokeApiService],
-  controllers: [PokeApiController],
 })
 export class PokeApiModule {}

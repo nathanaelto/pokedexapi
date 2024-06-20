@@ -9,6 +9,6 @@ export class PokeApiController {
 
   @Get()
   async fetchPokemon() {
-    return await this.pokeApiService.fetchPokemon();
+    return await this.pokeApiService.fetchPokemons();
   }
 }

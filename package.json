@@ -26,8 +26,11 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.3.1",
     "axios": "^1.7.2",
+    "nest-commander": "^3.13.0",
+    "nest-winston": "^1.10.0",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "winston": "^3.13.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
